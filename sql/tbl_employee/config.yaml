@@ -1,0 +1,7 @@
+ksqldb_cli_container: ksqldb-cli
+ksqldb_server_url: http://ksqldb-server:8088
+queries:
+  - tbl_employee_raw.sql
+  - tbl_employee_clean.sql
+  - tbl_employee_table.sql
+

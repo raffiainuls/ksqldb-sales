@@ -1,0 +1,8 @@
+ksqldb_cli_container: ksqldb-cli
+ksqldb_server_url: http://ksqldb-server:8088
+queries:
+  - income_offline_store.sql
+  - income_online_store.sql
+  - outcome_delivery.sql
+  - outcome_discount.sql
+  - sum_transactions.sql

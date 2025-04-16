@@ -1,0 +1,17 @@
+folders:
+  - tbl_sales
+  - tbl_promotions
+  - tbl_product
+  - tbl_employee
+  - tbl_customers
+  - tbl_branch
+  - fact_employee
+  - fact_sales
+  - sum_transactions
+  - dim_product_performance
+  - dim_monthly_product_performance
+  - dim_monthly_finance_performance
+  - dim_monthly_branch_performance
+  - dim_daily_finance_performance
+  - dim_branch_performance
+  - dim_branch_finance_performance

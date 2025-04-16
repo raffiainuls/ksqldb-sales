@@ -1,0 +1,8 @@
+ksqldb_cli_container: ksqldb-cli
+ksqldb_server_url: http://ksqldb-server:8088
+queries:
+  - tbl_promotions_raw.sql
+  - tbl_promotions_clean.sql
+  - tbl_promotions_convert.sql
+  - tbl_promotions_table.sql
+

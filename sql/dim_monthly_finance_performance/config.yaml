@@ -1,0 +1,10 @@
+ksqldb_cli_container: ksqldb-cli
+ksqldb_server_url: http://ksqldb-server:8088
+queries:
+  - gmv_monthly_finance_performance.sql
+  - gross_monthly_branch_finance_performance.sql
+  - outcome_monthly_finance_performance.sql
+  - uss_monthly_finance_performance.sql
+  - net_profit_monthly_finance_performance.sql
+  - revenue_monthly_finanance_performance.sql
+  - monthly_finance_performance.sql
