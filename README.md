@@ -75,7 +75,9 @@ This project is a streaming data pipeline project that use etl streaming from  p
      |-- database/  
        |-- ......
      |-- docker-compose.yaml                # file docker-compose
-     |-- stream_data.py                     # python script for generate and streaming data into kafka 
+   |-- last_id_backup              # backup list_id file
+   |-- last_id.txt                 # this file save last_id that most_recent create in stream.py 
+   |-- stream.py                   # file python that create data streaming and send into kafka 
 </pre>
 
 ### Project Workflow 
@@ -86,6 +88,39 @@ This project is a streaming data pipeline project that use etl streaming from  p
    - This project using KSQLDB for ETL streaming or execute query table like join, filter, windows function etc between some topics. but what needs to be known in KSQLDB there are some limitations functions. like in KSQLDB we cannot use union, does not support date related functions, do not support CTE, and in KSQLDB we cannot just join (there are several conditions that must be met)
 3. Custom Connector Kafka Connect
    - this Connector works for sink data or topics results from ETL streaming in kSQLDB, to use this connector acctually same like general connector in kafka connect, the different just only the configuration
+  
+### Instalation & Setup 
+#### Prerequisites 
+- Docker
+- Python
+- Java
+
+
+### Steps 
+1. clone this repository
+   ```bash
+   https://github.com/raffiainuls/ksqldb-sales
+2. In this project first we must have data in Postgres Database, you can import my data in th form of csv to postgres database in ```/ksqldb-sales/database```
+3. if all table  ```tbl_order_status, tbl_payment_method, tb_payment_status, tbl_shipping_status, tbl_employee, tbl_promotions, tbl_sales, tbl_product, tbl_schedulle_emp, tbl_customers, and tbl_branch``` already available in postgres database we can start CDC step from postgres to kafka
+4. first of all running all container in docker-compose
+   ```bash
+   docker-compose up
+5. if all container already running correctly we must post connector sorce postgres (note in this docker compose already install plugins for connector debezium postgres source).
+6. Post the configurations connector, the example of configurations it is in ```/ksqldb-sales/connector-configuration/postgres-source-connector.json``` you can post di configuration with postman or curl with this command
+```bash
+curl -X POST http://localhost:8083/connectors \
+     -H "Content-Type: application/json" \
+     -d @/connector-configuration/postgres-source-connector.json
+```
+  if you use this configuration, this connector will send all tables to kafka on the database specified in the configuration 
+7. you can check is the topic for each table already available or not in kafka using control-center, go to ```localhost:9091``` to control center webserver 
+8. if all topics for each table already available, now we can running streaming python script for generate data streaming and send to kafka, for your information this streaming only generate and send data to kafka for table tbl_sales only
+9. run python streaming script 
+```bash
+python stream.py 
+```
+10. this file will generate data streaming into topic tbl_sales in kafka. in this python script there is some calculations metrics for generate value in some field, so the value that produce not too random.
+11. 
 
     
     
