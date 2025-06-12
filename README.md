@@ -7,7 +7,7 @@ This project is a streaming data pipeline project that use etl streaming from  p
 
 
 #### Features 
-- Connector Source Kafka: Connector source Postgres in Kafka Connecto to send data in postgres to Kafka topics
+- CDC Data: Connector debezium for cdc data from postgres into Kafka topics
 - KSQLDB Query For ETL Streaming: there are some query for ETL Streaming, this query like join, filter, etc in kafka topics
 - Custom Connector Sink Kafka Connect: Custom Connector in Kafka Connect which is can sink data in kafka topics into postgres table
 
@@ -76,6 +76,16 @@ This project is a streaming data pipeline project that use etl streaming from  p
        |-- ......
      |-- docker-compose.yaml                # file docker-compose
      |-- stream_data.py                     # python script for generate and streaming data into kafka 
+</pre>
+
+### Project Workflow 
+
+1. CDC Data
+   - In this project first source data from Postgres database so therefore we use debezium postgres source connector for CDC data from postgres into kafka topics.
+2. KSQLDB For ETL Streaming
+   - This project using KSQLDB for ETL streaming or execute query table like join, filter, windows function etc between some topics. but what needs to be known in KSQLDB there are some limitations functions. like in KSQLDB we cannot use union, does not support date related functions, do not support CTE, and in KSQLDB we cannot just join (there are several conditions that must be met)
+3. Custom Connector Kafka Connect
+   - this Connector works for sink data or topics results from ETL streaming in kSQLDB, to use this connector acctually same like general connector in kafka connect, the different just only the configuration
 
     
     
