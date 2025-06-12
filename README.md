@@ -21,10 +21,24 @@ This project is a streaming data pipeline project that use etl streaming from  p
 - Docker
 
   ### Project Structure
-  <pre>  flink-sales/
-   |-- clickhouse/                       # directory configurasi docker clickhouse
-       |-- config.xml                    
-       |-- schema.sql                    
-       |-- setup apache superset on docker.txt                
-       |-- zookeeper-servers.xml 
+  <pre>  ksqldb-sales/
+   |-- connector-java/                             # directory configurasi docker clickhouse
+       |-- PostgresSinkConnector-1.0-SNAPSHOT.jar             
+     |-- helper/    
+       |-- package.py
+   |-- insert_sum_transaction/   
+         |-- dockerfile
+         |-- insert_load_sum_transactions.py
+     |-- postgres-db-volume/   
+     |-- PostgresSinkConnector/  
+     |-- sql/  
+       |-- branch_daily_finance_performance/      # directory lib function for table branch_daily_finance_performance 
+            |-- __init__.py
+            |-- lib.py
+    
+    
+    
+    
+    
+
   
